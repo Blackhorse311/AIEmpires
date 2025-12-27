@@ -33,3 +33,6 @@ Thumbs.db
 # Logs
 *.log
 logs/
+
+# Reference sources (cloned repos - too large for git)
+references/sources/
