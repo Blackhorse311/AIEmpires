@@ -1,22 +1,22 @@
 {
   "Name": "AIEmpires",
   "Description": "LLM-powered strategic AI for faction warfare. Watch empires rise and fall as AI agents control major powers.",
-  "Author": "RogueTech Community",
-  "Website": "",
-  "Contact": "",
+  "Author": "Blackhorse311",
+  "Website": "https://github.com/Blackhorse311/AIEmpires",
+  "Contact": "https://github.com/Blackhorse311/AIEmpires/issues",
   "Version": "0.1.0",
   "Enabled": true,
   "Hidden": false,
   "Locked": false,
   "DependsOn": [
-    "InnerSphereMap",
-    "CustomShops"
+    "WarTechIIC"
   ],
   "ConflictsWith": [
     "PersistentMapClient"
   ],
   "OptionallyDependsOn": [
-    "MissionControl"
+    "MissionControl",
+    "InnerSphereMap"
   ],
   "IgnoreLoadFailure": false,
   "DLL": "AIEmpires.dll",
