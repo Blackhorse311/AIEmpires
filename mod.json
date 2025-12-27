@@ -1,0 +1,31 @@
+{
+  "Name": "AIEmpires",
+  "Description": "LLM-powered strategic AI for faction warfare. Watch empires rise and fall as AI agents control major powers.",
+  "Author": "RogueTech Community",
+  "Website": "",
+  "Contact": "",
+  "Version": "0.1.0",
+  "Enabled": true,
+  "Hidden": false,
+  "Locked": false,
+  "DependsOn": [
+    "InnerSphereMap",
+    "CustomShops"
+  ],
+  "ConflictsWith": [
+    "PersistentMapClient"
+  ],
+  "OptionallyDependsOn": [
+    "MissionControl"
+  ],
+  "IgnoreLoadFailure": false,
+  "DLL": "AIEmpires.dll",
+  "DLLEntryPoint": "AIEmpires.Main.Init",
+  "EnableAssemblyVersionCheck": false,
+  "LoadImplicitManifest": true,
+  "Settings": {
+    "configPath": "config/settings.json",
+    "factionsPath": "config/factions.json",
+    "statePath": "data/galaxy_state.json"
+  }
+}

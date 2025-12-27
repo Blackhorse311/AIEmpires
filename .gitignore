@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.env
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs (keep main DLL for easy install)
+# AIEmpires.dll
+# AIEmpires.pdb
+
+# IDE
+.vs/
+.vscode/
+*.swp
+*.swo
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

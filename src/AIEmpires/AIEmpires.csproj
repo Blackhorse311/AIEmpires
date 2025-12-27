@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AIEmpires</AssemblyName>
+    <RootNamespace>AIEmpires</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\..\</OutputPath>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <!-- BattleTech Game Path - Update this to your installation -->
+  <PropertyGroup>
+    <BattleTechGameDir>F:\Program Files (x86)\Steam\steamapps\common\BATTLETECH</BattleTechGameDir>
+    <BattleTechManagedDir>$(BattleTechGameDir)\BattleTech_Data\Managed</BattleTechManagedDir>
+    <BattleTechModsDir>$(BattleTechGameDir)\Mods</BattleTechModsDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Core Game References -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(BattleTechManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(BattleTechManagedDir)\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Unity References -->
+    <Reference Include="UnityEngine">
+      <HintPath>$(BattleTechManagedDir)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(BattleTechManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(BattleTechManagedDir)\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Unity Networking for HTTP requests -->
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>$(BattleTechManagedDir)\UnityEngine.Networking.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>$(BattleTechManagedDir)\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- Harmony for patching -->
+    <Reference Include="0Harmony">
+      <HintPath>$(BattleTechManagedDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- JSON -->
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(BattleTechManagedDir)\Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0",
+  "enabled": true,
+  "debug": true,
+
+  "aiService": {
+    "endpoint": "http://localhost:5000",
+    "timeout": 30000,
+    "retryAttempts": 3,
+    "retryDelay": 1000
+  },
+
+  "claude": {
+    "model": "claude-sonnet-4-20250514",
+    "maxTokens": 1024,
+    "temperature": 0.7
+  },
+
+  "simulation": {
+    "daysPerTick": 30,
+    "tickOnPlayerAction": true,
+    "significantActionTypes": [
+      "contract_complete",
+      "system_captured",
+      "faction_reputation_major_change"
+    ],
+    "maxActionsPerTick": 5,
+    "actionExecutionDays": 10
+  },
+
+  "combat": {
+    "baseAttackStrength": 0.5,
+    "defenderBonus": 0.2,
+    "capitalDefenseBonus": 0.3,
+    "adjacencyRequirement": true,
+    "maxSystemsPerAttack": 3
+  },
+
+  "economy": {
+    "systemIncomeBase": 0.01,
+    "industrialWorldBonus": 0.02,
+    "capitalBonus": 0.05,
+    "warDrain": 0.1,
+    "recoveryRate": 0.02
+  },
+
+  "player": {
+    "influencePerContract": 5,
+    "influencePerSystemCaptured": 20,
+    "maxInfluencePoints": 100,
+    "suggestionCost": 25,
+    "factionBonuses": {
+      "member": {
+        "contractPayBonus": 0.1,
+        "salvageBonus": 0.05
+      },
+      "trusted": {
+        "contractPayBonus": 0.2,
+        "salvageBonus": 0.1,
+        "specialContracts": true
+      }
+    }
+  },
+
+  "display": {
+    "showConflictMarkers": true,
+    "showAIPredictions": false,
+    "eventLogMaxEntries": 100,
+    "notifyOnMajorEvents": true
+  },
+
+  "persistence": {
+    "stateFile": "galaxy_state.json",
+    "autoSaveInterval": 5,
+    "backupCount": 3
+  }
+}
