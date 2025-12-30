@@ -32,7 +32,16 @@ const api = {
   launchGame: (gamePath: string): Promise<boolean> => ipcRenderer.invoke('launch-game', gamePath),
 
   // External Links
-  openExternal: (url: string): Promise<boolean> => ipcRenderer.invoke('open-external', url)
+  openExternal: (url: string): Promise<boolean> => ipcRenderer.invoke('open-external', url),
+
+  // Logging
+  getLogConfig: (): Promise<LoggerConfig> => ipcRenderer.invoke('get-log-config'),
+  setLogLevel: (level: number): Promise<void> => ipcRenderer.invoke('set-log-level', level),
+  setLoggingEnabled: (enabled: boolean): Promise<void> => ipcRenderer.invoke('set-logging-enabled', enabled),
+  exportLogs: (): Promise<string> => ipcRenderer.invoke('export-logs'),
+  getRecentLogs: (count?: number): Promise<LogEntry[]> => ipcRenderer.invoke('get-recent-logs', count),
+  clearLogs: (): Promise<void> => ipcRenderer.invoke('clear-logs'),
+  getLogDirectory: (): Promise<string> => ipcRenderer.invoke('get-log-directory')
 }
 
 // Type definitions for the renderer
@@ -79,6 +88,24 @@ interface CostEstimate {
   estimatedCostPerPeriod: number
   estimatedCostPerMonth: number
   notes: string
+}
+
+interface LoggerConfig {
+  enabled: boolean
+  level: number
+  consoleOutput: boolean
+  fileOutput: boolean
+  maxFiles: number
+  maxFileSizeMB: number
+}
+
+interface LogEntry {
+  timestamp: string
+  level: string
+  module: string
+  message: string
+  data?: unknown
+  stack?: string
 }
 
 // Expose the API to the renderer process

@@ -2645,6 +2645,119 @@ The launcher UI follows a consistent BattleTech-inspired theme:
 | [VERSIONING.md](VERSIONING.md) | Detailed versioning guide |
 | [FINAL_MOD_LIST.md](FINAL_MOD_LIST.md) | Complete mod list with dependencies |
 | [CHANGELOG.md](../CHANGELOG.md) | Version history and release notes |
+| [LOGGING.md](LOGGING.md) | Logging standards and configuration |
+
+---
+
+## 14. Logging System
+
+### 14.1 Overview
+
+All components include a robust logging system for debugging and error reporting. Players can enable/disable logging, adjust log levels, and export logs for bug reports.
+
+### 14.2 Log Levels
+
+| Level | Value | Description |
+|-------|-------|-------------|
+| DEBUG | 0 | Detailed debugging information (development only) |
+| INFO | 1 | General operational information (default) |
+| WARN | 2 | Warning conditions that should be reviewed |
+| ERROR | 3 | Error conditions that need attention |
+| FATAL | 4 | Critical errors that may crash the application |
+
+### 14.3 Component Loggers
+
+#### Launcher (TypeScript)
+```typescript
+import { logger, LogLevel } from './logger'
+
+// Configure
+logger.setLevel(LogLevel.DEBUG)
+logger.enable()
+
+// Log messages
+logger.info('ModManager', 'Starting mod download', { modName: 'CustomAmmo' })
+logger.error('AIService', 'Connection failed', { provider: 'anthropic' })
+
+// Export for bug report
+const logPath = await logger.exportLogs()
+```
+
+#### AI Service (Python)
+```python
+from utils.logger import logger, LogLevel
+
+# Configure
+logger.set_level(LogLevel.DEBUG)
+logger.enable()
+
+# Log messages
+logger.info('AIBrain', 'Processing faction turn', {'faction': 'Davion'})
+logger.error('HttpClient', 'Connection failed', {'url': service_url}, exc_info=e)
+
+# Export for bug report
+log_path = logger.export_logs()
+```
+
+#### Game Mod (C#)
+```csharp
+using AIEmpires.Utils;
+
+// Configure
+Logger.Instance.SetLevel(LogLevel.Debug);
+Logger.Instance.Enable();
+
+// Log messages
+Logger.Instance.Info("AIBrain", "Processing faction turn", new { faction = "Davion" });
+Logger.Instance.Error("HttpClient", "Connection failed", new { url = serviceUrl }, exception);
+
+// Export for bug report
+string logPath = Logger.Instance.ExportLogs();
+```
+
+### 14.4 Log Format
+
+All logs are stored as JSON for easy parsing:
+
+```json
+{
+  "timestamp": "2024-12-30T15:30:45.123Z",
+  "level": "INFO",
+  "module": "ModManager",
+  "message": "Mod download complete",
+  "data": {
+    "modName": "CustomAmmo",
+    "version": "1.2.3"
+  }
+}
+```
+
+### 14.5 Log Files
+
+| Component | Location |
+|-----------|----------|
+| Launcher | `%APPDATA%/aiempires-launcher/logs/` |
+| AI Service | `ai-service/logs/` |
+| Game Mod | `<ModDirectory>/logs/` |
+
+Features:
+- Automatic log rotation (keeps last 5 files)
+- Maximum file size: 10MB per file
+- Session-based filenames: `aiempires-YYYY-MM-DDTHH-mm-ss.log`
+
+### 14.6 Bug Report Export
+
+Players can export logs for bug reports from the Settings page:
+
+1. Navigate to Settings > Logging
+2. Click "Export Logs for Bug Report"
+3. The export file opens in File Explorer
+4. Attach the `.txt` file to a GitHub Issue
+
+Export includes:
+- System information (OS, versions, etc.)
+- Session ID for correlation
+- All log entries from the current session
 
 ---
 
@@ -2661,6 +2774,7 @@ This architecture document defines:
 7. **State Persistence**: JSON-based save system maintaining faction memory across sessions
 8. **Auto-Update System**: GitHub-based distribution with manifest-driven updates
 9. **Development Standards**: Professional code quality, semantic versioning, and UI/UX guidelines
+10. **Logging System**: Robust logging across all components with export for bug reports
 
 ---
 

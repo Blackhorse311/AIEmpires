@@ -31,6 +31,7 @@ import { existsSync } from 'fs'
 import { findBattleTechInstall } from './gameDetector'
 import { ModManager } from './modManager'
 import { AIServiceManager } from './aiServiceManager'
+import { logger, LogLevel } from './logger'
 
 // =============================================================================
 // Global State
@@ -123,8 +124,10 @@ function createWindow(): void {
  * They maintain their own internal state and event emitters.
  */
 function initializeManagers(): void {
+  logger.info('Main', 'Initializing application services')
   modManager = new ModManager()
   aiServiceManager = new AIServiceManager()
+  logger.info('Main', 'Services initialized successfully')
 }
 
 // =============================================================================
@@ -157,7 +160,13 @@ function setupIpcHandlers(): void {
    * @returns {Promise<string | null>} Game path if found, null otherwise
    */
   ipcMain.handle('detect-game', async () => {
+    logger.debug('IPC', 'Detecting BattleTech installation')
     const gamePath = await findBattleTechInstall()
+    if (gamePath) {
+      logger.info('IPC', 'BattleTech found', { path: gamePath })
+    } else {
+      logger.warn('IPC', 'BattleTech installation not found')
+    }
     return gamePath
   })
 
@@ -215,15 +224,25 @@ function setupIpcHandlers(): void {
    */
   ipcMain.handle('download-mods', async (_, gamePath: string) => {
     if (!modManager) {
+      logger.error('IPC', 'Mod manager not initialized')
       return { success: false, error: 'Mod manager not initialized' }
     }
+
+    logger.info('ModManager', 'Starting mod download', { gamePath })
 
     // Forward progress events to renderer for UI updates
     modManager.on('progress', (progress) => {
       mainWindow?.webContents.send('mod-download-progress', progress)
+      logger.debug('ModManager', 'Download progress', progress)
     })
 
-    return await modManager.downloadAllMods(gamePath)
+    const result = await modManager.downloadAllMods(gamePath)
+    if (result.success) {
+      logger.info('ModManager', 'All mods downloaded successfully')
+    } else {
+      logger.error('ModManager', 'Mod download failed', { error: result.error })
+    }
+    return result
   })
 
   // ---------------------------------------------------------------------------
@@ -261,7 +280,14 @@ function setupIpcHandlers(): void {
    * @returns {Promise<boolean>} True if connection successful
    */
   ipcMain.handle('test-llm-connection', async (_, provider: string, apiKey: string, model: string) => {
-    return aiServiceManager?.testConnection(provider, apiKey, model) ?? false
+    logger.info('AIService', 'Testing LLM connection', { provider, model })
+    const result = aiServiceManager?.testConnection(provider, apiKey, model) ?? false
+    if (result) {
+      logger.info('AIService', 'LLM connection successful', { provider, model })
+    } else {
+      logger.warn('AIService', 'LLM connection failed', { provider, model })
+    }
+    return result
   })
 
   /**
@@ -303,9 +329,17 @@ function setupIpcHandlers(): void {
       ? join(gamePath, 'BattleTech.exe')
       : join(gamePath, 'BATTLETECH.exe')
 
-    // Spawn detached process that continues after launcher exits
-    spawn(exePath, [], { detached: true, stdio: 'ignore' }).unref()
-    return true
+    logger.info('Main', 'Launching BattleTech', { exePath })
+
+    try {
+      // Spawn detached process that continues after launcher exits
+      spawn(exePath, [], { detached: true, stdio: 'ignore' }).unref()
+      logger.info('Main', 'BattleTech launched successfully')
+      return true
+    } catch (error) {
+      logger.error('Main', 'Failed to launch BattleTech', { exePath, error: String(error) })
+      return false
+    }
   })
 
   // ---------------------------------------------------------------------------
@@ -321,6 +355,74 @@ function setupIpcHandlers(): void {
   ipcMain.handle('open-external', async (_, url: string) => {
     shell.openExternal(url)
     return true
+  })
+
+  // ---------------------------------------------------------------------------
+  // Logging Handlers
+  // ---------------------------------------------------------------------------
+
+  /**
+   * Gets the current logger configuration.
+   * @returns {Promise<LoggerConfig>} Current logging configuration
+   */
+  ipcMain.handle('get-log-config', async () => {
+    return logger.getConfig()
+  })
+
+  /**
+   * Sets the log level.
+   * @param {number} level - LogLevel value (0=DEBUG, 1=INFO, 2=WARN, 3=ERROR, 4=FATAL)
+   */
+  ipcMain.handle('set-log-level', async (_, level: number) => {
+    logger.setLevel(level as LogLevel)
+  })
+
+  /**
+   * Enables or disables logging.
+   * @param {boolean} enabled - Whether logging should be enabled
+   */
+  ipcMain.handle('set-logging-enabled', async (_, enabled: boolean) => {
+    if (enabled) {
+      logger.enable()
+    } else {
+      logger.disable()
+    }
+  })
+
+  /**
+   * Exports logs to a file for bug reports.
+   * Opens the file location in explorer after export.
+   * @returns {Promise<string>} Path to the exported log file
+   */
+  ipcMain.handle('export-logs', async () => {
+    const exportPath = await logger.exportLogs()
+    // Open the folder containing the exported logs
+    shell.showItemInFolder(exportPath)
+    return exportPath
+  })
+
+  /**
+   * Gets recent log entries for display in the UI.
+   * @param {number} count - Maximum number of entries to return
+   * @returns {Promise<LogEntry[]>} Array of recent log entries
+   */
+  ipcMain.handle('get-recent-logs', async (_, count: number = 100) => {
+    return logger.getRecentLogs(count)
+  })
+
+  /**
+   * Clears all log files.
+   */
+  ipcMain.handle('clear-logs', async () => {
+    logger.clearLogs()
+  })
+
+  /**
+   * Gets the log directory path.
+   * @returns {Promise<string>} Path to the log directory
+   */
+  ipcMain.handle('get-log-directory', async () => {
+    return logger.getLogDirectory()
   })
 }
 
