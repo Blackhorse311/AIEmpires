@@ -1,30 +1,101 @@
+/**
+ * AIEmpires Launcher - Global Styles
+ *
+ * Theme: Military-industrial BattleTech aesthetic
+ * - Dark backgrounds with steel/gunmetal tones
+ * - Orange/amber accents (warning lights, HUD elements)
+ * - Sharp edges with subtle tech borders
+ * - Monospace elements for tactical displays
+ *
+ * @version 1.0.0
+ */
+
+/* =============================================================================
+   CSS Reset & Base
+   ============================================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =============================================================================
+   CSS Custom Properties (Design Tokens)
+   ============================================================================= */
+
 :root {
-  --bg-primary: #1a1a2e;
-  --bg-secondary: #16213e;
-  --bg-card: #0f3460;
-  --accent: #e94560;
-  --accent-hover: #ff6b6b;
-  --text-primary: #eee;
-  --text-secondary: #aaa;
-  --text-muted: #666;
-  --success: #4caf50;
-  --warning: #ff9800;
-  --error: #f44336;
-  --border: #2a2a4a;
+  /* Background colors - dark military palette */
+  --bg-primary: #0a0e14;        /* Deep space black */
+  --bg-secondary: #141a24;      /* Steel gray */
+  --bg-card: #1a232e;           /* Gunmetal */
+  --bg-elevated: #222d3a;       /* Raised panel */
+
+  /* Accent colors - BattleTech orange/amber */
+  --accent: #ff6b00;            /* Primary orange (warning/action) */
+  --accent-hover: #ff8533;      /* Lighter orange for hover */
+  --accent-glow: rgba(255, 107, 0, 0.3);  /* Glow effect */
+
+  /* Secondary accent - cool blue for contrast */
+  --accent-secondary: #00a8ff;  /* Tech blue */
+  --accent-secondary-glow: rgba(0, 168, 255, 0.3);
+
+  /* Text colors */
+  --text-primary: #e8e8e8;      /* Off-white */
+  --text-secondary: #9aa5b1;    /* Muted gray */
+  --text-muted: #5a6977;        /* Dim text */
+
+  /* Status colors */
+  --success: #22c55e;           /* Green - operational */
+  --warning: #f59e0b;           /* Amber - caution */
+  --error: #ef4444;             /* Red - critical */
+
+  /* Border colors */
+  --border: #2a3744;            /* Default border */
+  --border-light: #3a4754;      /* Lighter border */
+  --border-accent: var(--accent);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+
+  /* Typography */
+  --font-sans: 'Segoe UI', 'Roboto', sans-serif;
+  --font-mono: 'Consolas', 'Monaco', monospace;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
 }
 
+/* =============================================================================
+   Base Styles
+   ============================================================================= */
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
   background: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+
+  /* Subtle background pattern for tech feel */
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 #root {
@@ -33,30 +104,66 @@ body {
   flex-direction: column;
 }
 
-/* Scrollbar styling */
+/* =============================================================================
+   Scrollbar Styling
+   ============================================================================= */
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: var(--border-light);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
 
-/* Common elements */
+/* Corner piece */
+::-webkit-scrollbar-corner {
+  background: var(--bg-secondary);
+}
+
+/* =============================================================================
+   Typography
+   ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 24px; }
+h3 { font-size: 18px; }
+h4 { font-size: 16px; }
+
+/* Tactical/HUD style text */
+.text-tactical {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+/* =============================================================================
+   Interactive Elements
+   ============================================================================= */
+
 button {
   cursor: pointer;
   border: none;
   font-family: inherit;
+  font-size: inherit;
   transition: all 0.2s ease;
 }
 
@@ -65,7 +172,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-input, select {
+input, select, textarea {
   font-family: inherit;
   font-size: inherit;
 }
@@ -73,89 +180,162 @@ input, select {
 a {
   color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
+  color: var(--accent-hover);
   text-decoration: underline;
 }
 
-/* Utility classes */
+/* =============================================================================
+   Card Component
+   ============================================================================= */
+
 .card {
   background: var(--bg-card);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
   border: 1px solid var(--border);
+  position: relative;
+
+  /* Tech corner accents */
+  background-image:
+    linear-gradient(135deg, var(--border-light) 0px, var(--border-light) 1px, transparent 1px),
+    linear-gradient(-135deg, var(--border-light) 0px, var(--border-light) 1px, transparent 1px);
+  background-position: top left, top right;
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
 }
+
+.card-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+/* =============================================================================
+   Button Components
+   ============================================================================= */
 
 .btn {
   padding: 10px 20px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   font-weight: 600;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
 }
 
+/* Primary button - orange action button */
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(180deg, var(--accent) 0%, #cc5500 100%);
   color: white;
+  border: 1px solid var(--accent);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: linear-gradient(180deg, var(--accent-hover) 0%, var(--accent) 100%);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
 }
 
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary button - outlined style */
 .btn-secondary {
   background: var(--bg-secondary);
   color: var(--text-primary);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-light);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--border);
+  background: var(--bg-elevated);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
+/* Success button */
 .btn-success {
-  background: var(--success);
+  background: linear-gradient(180deg, var(--success) 0%, #16a34a 100%);
   color: white;
+  border: 1px solid var(--success);
 }
 
 .btn-success:hover:not(:disabled) {
   filter: brightness(1.1);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
 }
 
-/* Status badges */
+/* Danger button */
+.btn-danger {
+  background: linear-gradient(180deg, var(--error) 0%, #dc2626 100%);
+  color: white;
+  border: 1px solid var(--error);
+}
+
+/* =============================================================================
+   Status Badges
+   ============================================================================= */
+
 .badge {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .badge-success {
-  background: rgba(76, 175, 80, 0.2);
+  background: rgba(34, 197, 94, 0.15);
   color: var(--success);
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .badge-warning {
-  background: rgba(255, 152, 0, 0.2);
+  background: rgba(245, 158, 11, 0.15);
   color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .badge-error {
-  background: rgba(244, 67, 54, 0.2);
+  background: rgba(239, 68, 68, 0.15);
   color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
-/* Form elements */
+.badge-info {
+  background: rgba(0, 168, 255, 0.15);
+  color: var(--accent-secondary);
+  border: 1px solid rgba(0, 168, 255, 0.3);
+}
+
+/* =============================================================================
+   Form Elements
+   ============================================================================= */
+
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: var(--spacing-xs);
   font-weight: 500;
   color: var(--text-secondary);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .form-group input,
@@ -164,33 +344,73 @@ a:hover {
   padding: 10px 12px;
   background: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   color: var(--text-primary);
   font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-/* Progress bar */
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+/* =============================================================================
+   Progress Bar
+   ============================================================================= */
+
 .progress-bar {
   width: 100%;
   height: 8px;
   background: var(--bg-secondary);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--accent);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%);
   transition: width 0.3s ease;
+  position: relative;
 }
 
-/* Loading spinner */
+/* Animated stripe effect */
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 20px 20px;
+  animation: progress-stripe 1s linear infinite;
+}
+
+@keyframes progress-stripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+/* =============================================================================
+   Loading Spinner
+   ============================================================================= */
+
 .spinner {
   width: 20px;
   height: 20px;
@@ -200,8 +420,152 @@ a:hover {
   animation: spin 1s linear infinite;
 }
 
+.spinner.large {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
+
+/* =============================================================================
+   Tech/HUD Decorations
+   ============================================================================= */
+
+/* Corner brackets for panels */
+.tech-frame {
+  position: relative;
+}
+
+.tech-frame::before,
+.tech-frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--accent);
+  border-style: solid;
+}
+
+.tech-frame::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.tech-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Scan line effect */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+}
+
+/* =============================================================================
+   Splash Screen
+   ============================================================================= */
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.splash-logo {
+  font-family: var(--font-mono);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin-bottom: var(--spacing-lg);
+  text-shadow: 0 0 30px var(--accent-glow);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.splash-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.splash-loading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px var(--accent-glow);
+  }
+  50% {
+    text-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow);
+  }
+}
+
+/* =============================================================================
+   Utility Classes
+   ============================================================================= */
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }

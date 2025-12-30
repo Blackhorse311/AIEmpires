@@ -1,52 +1,97 @@
+/**
+ * AIEmpires Launcher - App Layout Styles
+ *
+ * Main application layout including:
+ * - Sidebar navigation
+ * - Content area
+ * - Loading/splash screen
+ * - Grid layouts
+ *
+ * @version 1.0.0
+ */
+
+/* =============================================================================
+   App Container
+   ============================================================================= */
+
 .app {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* =============================================================================
+   Sidebar Navigation
+   ============================================================================= */
+
 .sidebar {
-  width: 220px;
+  width: 240px;
   background: var(--bg-secondary);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
+  position: relative;
+
+  /* Tech accent line on right edge */
+  box-shadow: inset -2px 0 0 var(--border);
 }
 
+/* Logo section */
 .logo {
-  padding: 0 20px 20px;
+  padding: 24px 20px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
+  position: relative;
 }
 
 .logo h1 {
-  font-size: 24px;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
   color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
   margin-bottom: 4px;
+
+  /* Glow effect */
+  text-shadow: 0 0 20px var(--accent-glow);
 }
 
 .logo .version {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+/* Version badge styling */
+.logo .version::before {
+  content: 'v';
+}
+
+/* Navigation links */
 .nav-links {
   list-style: none;
   flex: 1;
+  padding: 16px 0;
 }
 
 .nav-links li {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .nav-links a {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
+  gap: 14px;
+  padding: 14px 20px;
   color: var(--text-secondary);
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .nav-links a:hover {
@@ -56,17 +101,33 @@
 }
 
 .nav-links a.active {
-  background: var(--bg-card);
+  background: linear-gradient(90deg, var(--bg-card) 0%, transparent 100%);
   color: var(--accent);
   border-left: 3px solid var(--accent);
+  padding-left: 17px;  /* Compensate for border */
+}
+
+/* Active indicator glow */
+.nav-links a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
 .nav-links .icon {
   font-size: 18px;
+  width: 20px;
+  text-align: center;
 }
 
+/* Sidebar footer */
 .sidebar-footer {
-  padding: 20px;
+  padding: 16px 20px;
   border-top: 1px solid var(--border);
   text-align: center;
 }
@@ -74,56 +135,128 @@
 .sidebar-footer a {
   color: var(--text-muted);
   font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Main content */
+.sidebar-footer a:hover {
+  color: var(--accent);
+}
+
+/* =============================================================================
+   Main Content Area
+   ============================================================================= */
+
 .content {
   flex: 1;
-  padding: 30px;
+  padding: 32px;
   overflow-y: auto;
+  position: relative;
+
+  /* Subtle background gradient */
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    rgba(26, 35, 46, 0.3) 100%
+  );
 }
 
-/* Loading screen */
+/* =============================================================================
+   Loading/Splash Screen
+   ============================================================================= */
+
 .loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  gap: 20px;
+  gap: 24px;
+  z-index: 9999;
+
+  /* Tech grid background */
+  background-image:
+    linear-gradient(rgba(255, 107, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 107, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.spinner.large {
-  width: 40px;
-  height: 40px;
-  border-width: 3px;
+.loading-screen .logo-text {
+  font-family: var(--font-mono);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-shadow: 0 0 40px var(--accent-glow);
+  animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Page headers */
+.loading-screen .subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.loading-screen p {
+  color: var(--text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px var(--accent-glow);
+  }
+  50% {
+    text-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow);
+  }
+}
+
+/* =============================================================================
+   Page Headers
+   ============================================================================= */
+
 .page-header {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  position: relative;
+  padding-left: 16px;
+  border-left: 3px solid var(--accent);
 }
 
 .page-header h2 {
-  font-size: 28px;
+  font-size: 26px;
+  font-weight: 600;
   margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
 .page-header p {
   color: var(--text-secondary);
+  font-size: 14px;
 }
 
-/* Grid layouts */
+/* =============================================================================
+   Grid Layouts
+   ============================================================================= */
+
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 @media (max-width: 1000px) {
@@ -132,12 +265,15 @@
   }
 }
 
-/* Status indicators */
+/* =============================================================================
+   Status Indicators
+   ============================================================================= */
+
 .status-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -147,10 +283,14 @@
 
 .status-row .label {
   color: var(--text-secondary);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .status-row .value {
   font-weight: 500;
+  font-family: var(--font-mono);
 }
 
 .status-row .value.success {
@@ -163,4 +303,34 @@
 
 .status-row .value.error {
   color: var(--error);
+}
+
+/* Status dot indicator */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-dot.success {
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+}
+
+.status-dot.warning {
+  background: var(--warning);
+  box-shadow: 0 0 6px var(--warning);
+}
+
+.status-dot.error {
+  background: var(--error);
+  box-shadow: 0 0 6px var(--error);
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }

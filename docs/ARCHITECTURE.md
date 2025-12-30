@@ -2544,4 +2544,125 @@ This architecture document defines:
 
 ---
 
+## 13. Development Standards
+
+### 13.1 Code Quality Requirements
+
+All code in the AIEmpires project must adhere to professional coding standards:
+
+#### Documentation
+- **File Headers**: Every source file must include a JSDoc/docstring header with:
+  - `@fileoverview` - Brief description of file purpose
+  - `@author` - AIEmpires Team
+  - `@version` - Current semantic version
+  - `@license` - MIT
+
+- **Function Documentation**: All public functions/methods must include:
+  - Description of purpose
+  - `@param` for each parameter
+  - `@returns` for return value
+  - `@example` where helpful
+  - `@remarks` for implementation notes
+
+- **Inline Comments**: Complex logic should have explanatory comments
+
+#### Semantic Versioning
+
+AIEmpires follows [Semantic Versioning 2.0.0](https://semver.org/):
+
+```
+MAJOR.MINOR.PATCH
+```
+
+| Component | When to Increment |
+|-----------|-------------------|
+| MAJOR | Breaking changes (save incompatibility, API changes) |
+| MINOR | New features (new factions, providers, UI features) |
+| PATCH | Bug fixes, documentation, minor tweaks |
+
+Version scripts in launcher:
+```bash
+npm run version:patch  # 1.0.0 → 1.0.1
+npm run version:minor  # 1.0.0 → 1.1.0
+npm run version:major  # 1.0.0 → 2.0.0
+```
+
+### 13.2 Build Configuration
+
+#### Launcher Executable Build
+
+The launcher uses electron-builder for creating distributable executables:
+
+**Windows Targets:**
+- **NSIS Installer**: Full installation with Start Menu shortcuts
+- **Portable**: Single executable, no installation required
+
+**Build Commands:**
+```bash
+npm run package:win   # Windows builds
+npm run package:mac   # macOS builds (requires macOS)
+npm run package:linux # Linux builds
+```
+
+**Output Structure:**
+```
+launcher/release/1.0.0/
+├── AIEmpires Launcher-1.0.0-x64.exe        # NSIS installer
+├── AIEmpires Launcher-1.0.0-Portable.exe   # Portable version
+└── latest.yml                               # Auto-update metadata
+```
+
+### 13.3 UI/UX Design Standards
+
+#### Theme: Military-Industrial BattleTech
+
+The launcher UI follows a consistent BattleTech-inspired theme:
+
+**Color Palette:**
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--bg-primary` | `#0a0e14` | Deep space black background |
+| `--bg-secondary` | `#141a24` | Steel gray panels |
+| `--bg-card` | `#1a232e` | Gunmetal card backgrounds |
+| `--accent` | `#ff6b00` | Primary orange (action/warning) |
+| `--accent-secondary` | `#00a8ff` | Tech blue for contrast |
+
+**Typography:**
+- Sans-serif: Segoe UI, Roboto
+- Monospace: Consolas, Monaco (for tactical/HUD elements)
+- Text transforms: uppercase for labels, increased letter-spacing
+
+**Visual Elements:**
+- Tech corner accents on cards
+- Glowing orange effects on active elements
+- Animated progress bars with stripe effects
+- Status indicator dots with pulse animations
+
+### 13.4 Related Documentation
+
+| Document | Description |
+|----------|-------------|
+| [VERSIONING.md](VERSIONING.md) | Detailed versioning guide |
+| [FINAL_MOD_LIST.md](FINAL_MOD_LIST.md) | Complete mod list with dependencies |
+| [CHANGELOG.md](../CHANGELOG.md) | Version history and release notes |
+
+---
+
+## Summary
+
+This architecture document defines:
+
+1. **Launcher**: Electron + React application for mod management, LLM configuration, and game launching
+2. **AI Service**: Python FastAPI service handling LLM communication and faction decision-making
+3. **Game Mod**: C# Harmony mod integrating with BattleTech and WarTechIIC
+4. **Operational Period Planning**: ICS-inspired 30-day planning cycles with faction-specific reaction speeds
+5. **Multi-Provider LLM System**: Support for Claude, GPT, Gemini, Groq, and Ollama
+6. **Dynamic Cost Estimation**: Real-time cost display based on provider, model, and faction tier
+7. **State Persistence**: JSON-based save system maintaining faction memory across sessions
+8. **Auto-Update System**: GitHub-based distribution with manifest-driven updates
+9. **Development Standards**: Professional code quality, semantic versioning, and UI/UX guidelines
+
+---
+
 *Document Status: Complete - Ready for implementation*
+*Last Updated: December 2024*
