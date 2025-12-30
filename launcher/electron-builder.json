@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.aiempires.launcher",
+  "productName": "AIEmpires Launcher",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "resources/icons/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "installerIcon": "resources/icons/icon.ico",
+    "uninstallerIcon": "resources/icons/icon.ico",
+    "installerHeaderIcon": "resources/icons/icon.ico"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "Blackhorse311",
+    "repo": "AIEmpires"
+  }
+}

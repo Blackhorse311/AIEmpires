@@ -1,0 +1,67 @@
+{
+    "manifest_version": "1.0.0",
+    "last_updated": "2024-12-30T00:00:00Z",
+
+    "launcher": {
+        "current_version": "0.1.0",
+        "download_url": "https://github.com/Blackhorse311/AIEmpires/releases/download/v0.1.0/AIEmpires-Launcher-Setup.exe",
+        "changelog_url": "https://github.com/Blackhorse311/AIEmpires/blob/main/CHANGELOG.md"
+    },
+
+    "core_bundle": {
+        "version": "0.1.0",
+        "download_url": "https://github.com/Blackhorse311/AIEmpires/releases/download/v0.1.0/AIEmpires-Core-Mods.zip",
+        "sha256": "",
+        "size_mb": 0
+    },
+
+    "mods": [
+        {
+            "id": "ModTek",
+            "name": "ModTek",
+            "version": "4.2.0",
+            "tier": "framework",
+            "source_url": "https://github.com/BattletechModders/ModTek",
+            "download_url": "https://github.com/BattletechModders/ModTek/releases/latest",
+            "dependencies": []
+        },
+        {
+            "id": "IRBTModUtils",
+            "name": "IRBTModUtils",
+            "version": "1.0.0",
+            "tier": "framework",
+            "source_url": "https://github.com/BattletechModders/IRBTModUtils",
+            "download_url": "https://github.com/BattletechModders/IRBTModUtils/releases/latest",
+            "dependencies": ["ModTek"]
+        },
+        {
+            "id": "CustomComponents",
+            "name": "CustomComponents",
+            "version": "1.0.0",
+            "tier": "framework",
+            "source_url": "https://github.com/BattletechModders/CustomComponents",
+            "download_url": "https://github.com/BattletechModders/CustomComponents/releases/latest",
+            "dependencies": ["ModTek"]
+        },
+        {
+            "id": "MechEngineer",
+            "name": "MechEngineer",
+            "version": "1.0.0",
+            "tier": "core",
+            "source_url": "https://github.com/BattletechModders/MechEngineer",
+            "download_url": "https://github.com/BattletechModders/MechEngineer/releases/latest",
+            "dependencies": ["ModTek", "CustomComponents"]
+        },
+        {
+            "id": "WarTechIIC",
+            "name": "WarTechIIC",
+            "version": "1.0.0",
+            "tier": "core",
+            "source_url": "https://github.com/BlueWinds/WarTechIIC",
+            "download_url": "https://github.com/BlueWinds/WarTechIIC/releases/latest",
+            "dependencies": ["ModTek"]
+        }
+    ],
+
+    "_comment": "This is a minimal manifest. Full mod list will be added during release packaging."
+}

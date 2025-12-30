@@ -1,0 +1,111 @@
+AIEmpires Required Core Mod List:
+  | https://github.com/BattletechModders/ModTek           | Mod loading system for BattleTech         | LGPL-2.1 |
+  | https://github.com/BattletechModders/IRBTModUtils     | Shared utility classes for BT mods        | MIT      |
+  | https://github.com/BattletechModders/CustomComponents | Attach custom data to components via JSON | LGPL-2.1 |
+  | https://github.com/BattletechModders/CustomBundle     | CAC + CAE + CU binaries bundle            | -        |
+  | https://github.com/BattletechModders/MechEngineer         | CBT mechanics for MechLab (engines, heat sinks, etc.) | -       |
+  | https://github.com/BattletechModders/CustomAmmoCategories | Custom ammo types, weapon modes, jamming| -       |
+  | https://github.com/BattletechModders/CBTBehaviorsEnhanced | Classic BattleTech behaviors| -       |
+  | https://github.com/BattletechModders/LowVisibility        | Advanced sensors, ECM, stealth| MIT     |
+  | https://github.com/BattletechModders/SkillBasedInit       | Initiative based on pilot skills| MIT     |
+  | https://github.com/BattletechModders/TisButAScratch       | Interesting injury system| MIT     |
+  | https://github.com/BattletechModders/StrategicOperations  | Strategic combat operations
+  | https://github.com/BlueWinds/WarTechIIC      | Dynamic faction warfare, flareups, extended contracts | GPL-3.0 |
+  | https://github.com/CWolfs/MissionControl           | Runtime contract/encounter modifications | -       |
+  | https://github.com/CWolfs/ExtendedConversations    | More conversation functionality          | -       |
+  | https://github.com/CWolfs/ConverseTek              | Conversation editor tool                 | -       |
+  | https://github.com/BattletechModders/MultiMissions | Each contract = row of missions          | -       |
+  | https://github.com/BattletechModders/CustomSalvage       | Enhanced salvage system            | -       |
+  | https://github.com/BattletechModders/AdjustedMechSalvage | Change mech parts generation rules | -       |
+  | https://github.com/BattletechModders/SellMechParts       | Sell mech parts in any shop  
+  | https://github.com/BattletechModders/Retrainer | Allows pilots to retrain skills | -       |
+  | https://github.com/BattletechModders           | XP based on weapon type usage   | -       |
+  | https://github.com/BattletechModders/LewdableTanks    | Vehicle/tank modifications | -       |
+  | https://github.com/BattletechModders/CustomUnitsSpawn | Fuzzy tags for unit spawns | -       |
+  | https://github.com/BattletechModders/BattletechPerformanceFix | Performance improvements & fixes | -        |
+  | 1https://github.com/BattletechModders/SpeedMod                 | Speed improvements               | LGPL-2.1 |
+  | https://github.com/BattletechModders/SkipIntro               | Skip intro cutscene         | -        |
+  | https://github.com/BattletechModders/CommanderPortraitLoader | Custom commander avatars    | -        |
+  | https://github.com/BattletechModders/PilotHealthPopup        | Health info after injuries  | -        |
+  | https://github.com/BattletechModders/LogoReplacement         | Replace main screen logo    | -        |
+  | https://github.com/BattletechModders/NewSaveFolder           | Custom save folder location | LGPL-2.1 |
+  | https://github.com/BattletechModders/CustomFilters           | Custom filtering options    | LGPL-2.1 |
+  | https://github.com/BattletechModders/ConcreteJungle              | Urban combat enhancements
+  | https://github.com/BattletechModders/LostInSpace                 | Visual control over star systems
+  | https://github.com/BattletechModders/Community-Asset-Bundle-Maps | Custom maps
+  | Community-Asset-Bundles - ALL                                          | Multiple repos for different eras (StarLeague, Clan Invasion, Civil War, Dark Age, etc.) |
+  | https://github.com/BattletechModders/StoreTagEnabler  | Stores use reputation and time tags             |
+  | https://github.com/BattletechModders/SearchAndRescue  | Search and rescue mechanics                     |
+  | https://github.com/CWolfs/BTDebug                     | Debug mod for development                       |
+https://github.com/BattletechModders/CleverGirl
+https://github.com/BattletechModders/SizeMatters
+https://github.com/BattletechModders/IRTweaks
+https://github.com/BattletechModders/MonsterMashup
+https://github.com/BattletechModders/Abilifier
+https://github.com/BattletechModders/CustomUnitsDecorator
+https://github.com/BattletechModders/DynamicShops
+https://github.com/BattletechModders/SoldiersPiratesAssassinsMercs
+https://github.com/BattletechModders/CodeWords
+https://github.com/BattletechModders/CustomStatisticEffects
+https://github.com/BattletechModders/PanicSystem
+https://github.com/BattletechModders/CustomShops
+https://github.com/BattletechModders/NavigationComputer
+https://github.com/BattletechModders/DisorderlyWithdrawal
+https://github.com/BattletechModders/ExpandedInitiative
+https://github.com/BattletechModders/BiggerDrops
+https://github.com/BattletechModders/StatisticEffectDataInjector
+https://github.com/BattletechModders/TravelInfoTooltips
+https://github.com/BattletechModders/Flashpoint-Spawn-Adjustments
+https://github.com/BattletechModders/JK_Rarity
+https://github.com/BattletechModders/Pilot_Quirks
+https://github.com/BattletechModders/JK_Variants
+https://github.com/BattletechModders/Flashpoint-Stock-Photos
+https://github.com/BattletechModders/StoreTagEnabler
+https://github.com/BattletechModders/BT-SortMechsByTonnage
+https://github.com/BattletechModders/SellMechParts
+https://github.com/BattletechModders/ContractSort
+https://github.com/BattletechModders/MultiMissions
+
+
+
+
+Optional if the player wants to use them:
+https://github.com/BattletechModders/ArmorRepair
+https://github.com/BattletechModders/FieldRepairs
+https://github.com/BattletechModders/FlashpointEnabler
+https://github.com/BattletechModders/IttyBittyLivingSpace
+https://github.com/BattletechModders/CustomPilotDecorator
+https://github.com/BattletechModders/SelectPilots
+https://github.com/BattletechModders/MechMaintenanceByCost
+https://github.com/BattletechModders/CustomSlots
+https://github.com/BattletechModders/ColorfulCombatants
+https://github.com/BattletechModders/QuickCam
+https://github.com/BattletechModders/SalvageOperations
+https://github.com/BattletechModders/PilotHealthPopup
+https://github.com/BattletechModders/SkipTravelCutscenes
+https://github.com/BattletechModders/SkipIntro
+https://github.com/BattletechModders/HideCareerModeDays
+https://github.com/BattletechModders/AdjustedMechAssemblyCC
+https://github.com/BattletechModders/Attack-Improvement-Mod
+https://github.com/BattletechModders/RandomCampaignStart
+
+  
+  
+  
+  Check to see if we might need these to make other things we want to work:
+  https://github.com/BattletechModders/UnityDoorstop
+  https://github.com/BattletechModders/MonoLibs
+  https://github.com/BattletechModders/Timeline
+  https://github.com/BattletechModders/CustomIntro
+  https://github.com/BattletechModders/AbilityRealizer
+  https://github.com/BattletechModders/cFixes
+  https://github.com/BattletechModders/CT-Ammo-Mover
+  https://github.com/BattletechModders/BetterAI
+  https://github.com/BattletechModders/ModTechMaster
+  https://github.com/BattletechModders/SplashScreenFix
+  https://github.com/BattletechModders/BT1_4_MadlibsFix
+  https://github.com/BattletechModders/BattleTechModLoader
+  https://github.com/BattletechModders/MercDeployments
+  https://github.com/BattletechModders/MechResizer
+  https://github.com/BattletechModders/ShotCountEnabler
+  

@@ -1,0 +1,71 @@
+{
+    "_version": "1.0.0",
+    "era_id": "clan_invasion",
+    "era_name": "Clan Invasion Era",
+    "start_year": 3049,
+    "end_year": 3061,
+    "description": "The Clans have arrived. The Inner Sphere will never be the same.",
+
+    "active_factions": [
+        "Davion",
+        "Steiner",
+        "Liao",
+        "Marik",
+        "Kurita",
+        "ComStar",
+        "FreeRasalhague",
+        "Wolf",
+        "JadeFalcon",
+        "GhostBear",
+        "SmokeJaguar",
+        "NovaCat",
+        "SteelViper",
+        "DiamondShark",
+        "TaurianConcordat",
+        "MagistracyOfCanopus",
+        "OutworldsAlliance"
+    ],
+
+    "starting_conditions": {
+        "federated_commonwealth_exists": true,
+        "free_rasalhague_exists": true,
+        "clans_invading": true,
+        "tukayyid_occurred": false
+    },
+
+    "major_events": [
+        {
+            "year": 3049,
+            "month": 8,
+            "event": "clan_invasion_begins",
+            "description": "The Clans cross the Periphery and begin their invasion of the Inner Sphere."
+        },
+        {
+            "year": 3050,
+            "month": 1,
+            "event": "rasalhague_falls",
+            "description": "Clan Wolf and Ghost Bear rapidly conquer the Free Rasalhague Republic."
+        },
+        {
+            "year": 3052,
+            "month": 5,
+            "event": "battle_of_tukayyid",
+            "description": "ComStar challenges the Clans to a Trial on Tukayyid. The fate of Terra hangs in the balance."
+        }
+    ],
+
+    "faction_modifiers": {
+        "Wolf": {"aggression": 1.5, "attack_strength": 18},
+        "JadeFalcon": {"aggression": 1.6, "attack_strength": 19},
+        "GhostBear": {"aggression": 1.3, "attack_strength": 17},
+        "SmokeJaguar": {"aggression": 1.8, "attack_strength": 20}
+    },
+
+    "protected_systems": [
+        "starsystemdef_Luthien",
+        "starsystemdef_NewAvalon",
+        "starsystemdef_Tharkad",
+        "starsystemdef_Terra",
+        "starsystemdef_Tukayyid"
+    ]
+}

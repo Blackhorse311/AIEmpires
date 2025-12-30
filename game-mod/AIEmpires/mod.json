@@ -1,0 +1,25 @@
+{
+    "Name": "AIEmpires",
+    "Enabled": true,
+    "Version": "0.1.0",
+    "Description": "LLM-powered faction AI for BattleTech. Each major faction is controlled by an AI agent with a distinct personality.",
+    "Author": "AIEmpires Team",
+    "Website": "https://github.com/Blackhorse311/AIEmpires",
+    "Contact": "",
+
+    "DLL": "AIEmpires.dll",
+    "DLLEntryPoint": "AIEmpires.Main.Init",
+
+    "DependsOn": [
+        "ModTek",
+        "IRBTModUtils",
+        "WarTechIIC"
+    ],
+
+    "ConflictsWith": [],
+
+    "Settings": {
+        "AIServiceUrl": "http://127.0.0.1:5000",
+        "EnableDebugLogging": false
+    }
+}
